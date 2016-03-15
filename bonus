@@ -1,0 +1,38 @@
+Bonus #1
+94,103,34,54,12,54,80,90,2 || find 80
+divide
+[94,103,34,54][12,54,80,90,2]
+[94,103][34,54][12,54][80,90,2]
+[94][103][34][54][12][54][80][90,2]
+[94][103][34][54][12][54][80][90][2]
+merge
+[94,103][34,54][12,54][80,90][2]
+[34,54,94,103][12,54,80,90][2]
+[12,34,54,54,80,90,94,103][2]
+[2,12,34,54,54,80,90,94,103]
+sort done
+[2,12,34,54,54,80,90,94,103]
+			^54 middle value != 80 and 80 > 54, take second half
+			[80,90,94,103]
+				 ^ 90 is middle value and 80 < 90 so take first number
+				 [80]
+				  is the desired value.
+
+
+Bonus #2
+    public static int recursiveBinarySearch(int[] sortedArray, int start, int end, int key) {
+
+        if (start < end) {
+            int mid = start + (end - start) / 2;
+            if (key < sortedArray[mid]) {
+                return recursiveBinarySearch(sortedArray, start, mid, key);
+
+            } else if (key > sortedArray[mid]) {
+                return recursiveBinarySearch(sortedArray, mid+1, end , key);
+
+            } else {
+                return mid;
+            }
+        }
+        return -(start + 1);
+    }
